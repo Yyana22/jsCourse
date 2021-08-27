@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            border-spacing: 0;
+            border: 1px solid black;
+            margin: 20px 20px;
+        }
+
+        .black {
+            width: 40px;
+            height: 40px;
+            background: black;
+        }
+
+        .white {
+            width: 40px;
+            height: 40px;
+            background: white;
+        }
+
+        [data-row]:before {
+            content: attr(data-row);
+            position: absolute;
+            margin: 12px -15px;
+        }
+
+        [data-col]:before {
+            content: attr(data-col);
+            position: absolute;
+            margin: 40px 0px;
+        }
+
+        [name-1] {
+            color: green;
+            text-align: center;
+        }
+
+        [name-2] {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let table = document.createElement("table");
+        for (let i = 0; i < 8; i++) {
+            let tr = document.createElement('tr');
+            tr.setAttribute('data-row', 8 - i);
+            for (let j = 0; j < 8; j++) {
+                let td = document.createElement('td');
+                if (i == 7) {
+                    td.setAttribute('data-col', String.fromCharCode(65 + j));
+                }
+                if (i % 2 == j % 2) {
+                    td.className = "white";
+                } else {
+                    td.className = "black";
+                }
+                tr.appendChild(td);
+                if (i == 1) {
+                    td.innerHTML = 'P';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 6) {
+                    td.innerHTML = 'P';
+                    td.setAttribute('name-2', '');
+                }
+                if (i == 0 && (j == 0 || j == 7)) {
+                    td.innerHTML = 'L';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 7 && (j == 0 || j == 7)) {
+                    td.innerHTML = 'L';
+                    td.setAttribute('name-2', '');
+                }
+                if (i == 0 && (j == 1 || j == 6)) {
+                    td.innerHTML = 'Kn';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 7 && (j == 1 || j == 6)) {
+                    td.innerHTML = 'Kn';
+                    td.setAttribute('name-2', '');
+                }
+                if (i == 0 && j == 3) {
+                    td.innerHTML = 'K';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 7 && j == 3) {
+                    td.innerHTML = 'K';
+                    td.setAttribute('name-2', '');
+                }
+                if (i == 0 && j == 4) {
+                    td.innerHTML = 'Q';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 7 && j == 4) {
+                    td.innerHTML = 'Q';
+                    td.setAttribute('name-2', '');
+                }
+                if (i == 0 && (j == 2 || j == 5)) {
+                    td.innerHTML = 'B';
+                    td.setAttribute('name-1', '');
+                }
+                if (i == 7 && (j == 2 || j == 5)) {
+                    td.innerHTML = 'B';
+                    td.setAttribute('name-2', '');
+                }
+
+            }
+            table.appendChild(tr);
+        }
+
+        document.body.appendChild(table);
+
+    </script>
+</body>
+
+</html>
